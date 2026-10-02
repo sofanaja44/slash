@@ -1,0 +1,14 @@
+{
+  "name": "slash",
+  "description": "Plugin Claude Code untuk menghemat token: model dan effort otomatis sesuai tingkat kesulitan tugas, ramah prompt cache.",
+  "owner": {
+    "name": "sofanaja44"
+  },
+  "plugins": [
+    {
+      "name": "slash",
+      "source": "./",
+      "description": "Auto-switch model dan effort sesuai tingkat kesulitan tugas, tanpa membuang prompt cache."
+    }
+  ]
+}

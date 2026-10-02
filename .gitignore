@@ -1,0 +1,3 @@
+# Ditulis ulang oleh Claude Code setiap kali plugin dimuat dari folder ini (--plugin-dir).
+.claude-plugin/types/
+node_modules/

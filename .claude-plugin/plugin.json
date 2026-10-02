@@ -1,0 +1,77 @@
+{
+  "name": "slash",
+  "displayName": "Slash: hemat token",
+  "version": "0.1.0",
+  "description": "Memilih model dan effort Claude secara otomatis sesuai tingkat kesulitan tugas, tanpa membuang prompt cache, dengan statistik biaya di status line.",
+  "author": {
+    "name": "sofanaja44"
+  },
+  "repository": "https://github.com/sofanaja44/slash",
+  "keywords": [
+    "token",
+    "cost",
+    "routing",
+    "prompt-caching",
+    "effort",
+    "subagents"
+  ],
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "auto_effort": {
+      "type": "boolean",
+      "title": "Effort otomatis",
+      "description": "Atur effort per giliran sesuai tier (low/medium/high/xhigh). Hanya di model yang tetap memakai cache saat effort berubah (Opus 5.5, Sonnet 5.5, Fable 5.1).",
+      "default": true
+    },
+    "route_subagents": {
+      "type": "boolean",
+      "title": "Model subagent otomatis",
+      "description": "Pilih model subagent bawaan (general-purpose, Explore) dari tugas yang didelegasikan, bila model tidak ditentukan.",
+      "default": true
+    },
+    "auto_main_model": {
+      "type": "string",
+      "title": "Ganti model utama",
+      "description": "hemat-cache: ganti model loop utama hanya saat cache dingin, atau naik model bila biaya tulis ulang cache di bawah batas. off: model utama tidak pernah diganti.",
+      "options": [
+        "hemat-cache",
+        "off"
+      ],
+      "default": "hemat-cache"
+    },
+    "max_switch_usd": {
+      "type": "number",
+      "title": "Batas biaya naik model (USD)",
+      "description": "Saat cache masih hangat, naik model hanya bila biaya menulis ulang konteks ke cache model baru tidak melebihi angka ini. Turun model tidak pernah dilakukan saat cache hangat.",
+      "default": 1,
+      "min": 0,
+      "max": 10
+    },
+    "cache_ttl_minutes": {
+      "type": "number",
+      "title": "Umur cache (menit)",
+      "description": "Setelah jeda selama ini cache dianggap dingin dan model boleh diganti tanpa biaya tambahan. 60 untuk langganan Claude, 5 untuk API key (kecuali promptCacheTtl diubah).",
+      "default": 60,
+      "min": 5,
+      "max": 60
+    },
+    "allow_fable": {
+      "type": "boolean",
+      "title": "Izinkan Fable untuk tier 4",
+      "description": "Pakai Fable (paling kuat, paling mahal) untuk tugas tier 4. Mati: tier 4 memakai Opus dengan effort xhigh.",
+      "default": false
+    },
+    "policy_prompt": {
+      "type": "boolean",
+      "title": "Kebijakan delegasi di system prompt",
+      "description": "Tambahkan sekitar 150 token panduan delegasi ke system prompt (teks tetap, ikut ter-cache).",
+      "default": true
+    },
+    "status_line": {
+      "type": "boolean",
+      "title": "Status line dan notifikasi",
+      "description": "Tampilkan tier, model/effort, hit rate cache dan biaya sesi di bawah prompt, serta notifikasi saat model diganti.",
+      "default": true
+    }
+  }
+}
